@@ -11,8 +11,9 @@
     "build:agent": "mastra build",
     "start:agent": "mastra start",
     "lint": "next lint",
-    "build": "mastra build && next build",
-    "start": "concurrently \"npm:start:agent\" \"npm:start:ui\""
+    "build": "next build",
+    "start": "next start",
+    "vercel-build": "next build"
   },
   "dependencies": {
     "@ag-ui/client": "^0.0.40",
