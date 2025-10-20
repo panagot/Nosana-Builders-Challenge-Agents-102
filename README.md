@@ -1,307 +1,264 @@
-# Builders' Challenge #3: AI Agents 102
-**Presented by Nosana and Mastra**
+# MediTech AI - Healthcare Agent for Nosana Agents 102
 
-![Agent](./assets/NosanaBuildersChallenge03.jpg)
+🏥 **Advanced AI-Powered Medical Analysis & Treatment Planning**
 
-## Welcome to the AI Agent Challenge
+A production-ready healthcare AI agent built with Mastra, Next.js, and deployed on the Nosana Network. This application provides intelligent symptom analysis, risk assessment, and evidence-based treatment recommendations.
 
-Build and deploy intelligent AI agents using the **Mastra framework** on the **Nosana decentralized compute network**. Whether you're a beginner or an experienced developer, this challenge has something for everyone!
+## 🎯 Features
 
-## 🎯 Challenge Overview
+### Core Capabilities
+- **🔍 Symptom Analysis**: Advanced pattern matching and confidence scoring
+- **⚠️ Risk Assessment**: Emergency detection and urgency classification  
+- **💊 Treatment Planning**: Evidence-based treatment recommendations
+- **👤 Patient Management**: Age and gender-aware medical guidance
+- **🚨 Emergency Detection**: Critical condition identification
 
-**Your Mission:** Build an intelligent AI agent with a frontend interface and deploy it on Nosana's decentralized network.
+### Technical Features
+- **🤖 Mastra AI Agent**: Context-aware healthcare assistant
+- **🛠️ Medical Tools**: Specialized healthcare tool calling
+- **⚡ Real-time UI**: Live synchronization with agent state
+- **🏗️ MCP Server**: Model Context Protocol for resource management
+- **🐳 Docker Ready**: Containerized for Nosana deployment
 
-### What You'll Build
+## 🏗️ Architecture
 
-Create an AI agent that performs real-world tasks using:
-- **Mastra framework** for agent orchestration
-- **Tool calling** to interact with external services
-- **MCP (Model Context Protocol)** for enhanced capabilities
-- **Custom frontend** to showcase your agent's functionality
+### Components
+1. **Mastra Healthcare Agent** (`src/mastra/agents/`)
+   - Advanced medical knowledge base
+   - Context-aware symptom analysis
+   - Dynamic confidence scoring
+   - Emergency detection algorithms
 
-### Agent Ideas & Examples
+2. **Medical Tools** (`src/mastra/tools/`)
+   - `symptomAnalysisTool`: Comprehensive symptom analysis
+   - `treatmentPlanningTool`: Evidence-based treatment plans
+   - `riskAssessmentTool`: Emergency risk evaluation
 
-The possibilities are endless! Here are some ideas to get you started:
+3. **Next.js Frontend** (`src/app/`)
+   - Real-time patient dashboard
+   - Interactive medical analysis
+   - Live agent synchronization
+   - Beautiful healthcare UI
 
-- 🤖 **Personal Assistant** - Schedule management, email drafting, task automation
-- 📊 **Data Analyst Agent** - Fetch financial data, generate insights, create visualizations
-- 🌐 **Web Researcher** - Aggregate information from multiple sources, summarize findings
-- 🛠️ **DevOps Helper** - Monitor services, automate deployments, manage infrastructure
-- 🎨 **Content Creator** - Generate social media posts, blog outlines, marketing copy
-- 🔍 **Smart Search** - Multi-source search with AI-powered result synthesis
-- 💬 **Customer Support Bot** - Answer FAQs, ticket routing, knowledge base queries
+4. **MCP Server** (`src/mastra/mcp/`)
+   - Resource management
+   - Tool orchestration
+   - Prompt management
 
-**Be Creative!** The best agents solve real problems in innovative ways.
+## 🚀 Quick Start
 
-## Getting Started Template
+### Prerequisites
+- Node.js 18+
+- npm or pnpm
+- Docker (for deployment)
 
-This is a starter template for building AI agents using [Mastra](https://mastra.ai) and [CopilotKit](https://copilotkit.ai). It provides a modern Next.js application with integrated AI capabilities and a beautiful UI.
+### Development Setup
 
-## Getting Started
-
-### Prerequisites & Registration
-
-To participate in the challenge and get Nosana credits/NOS tokens, complete these steps:
-
-1. Register at [SuperTeam](https://earn.superteam.fun/listing/nosana-builders-challenge-agents-102)
-2. Register at the [Luma Page](https://luma.com/zkob1iae)
-3. Star these repos:
-   - [this repo](https://github.com/nosana-ci/agent-challenge)
-   - [Nosana CLI](https://github.com/nosana-ci/nosana-cli)
-   - [Nosana SDK](https://github.com/nosana-ci/nosana-sdk)
-4. Complete [this registration form](https://e86f0b9c.sibforms.com/serve/MUIFALaEjtsXB60SDmm1_DHdt9TOSRCFHOZUSvwK0ANbZDeJH-sBZry2_0YTNi1OjPt_ZNiwr4gGC1DPTji2zdKGJos1QEyVGBzTq_oLalKkeHx3tq2tQtzghyIhYoF4_sFmej1YL1WtnFQyH0y1epowKmDFpDz_EdGKH2cYKTleuTu97viowkIIMqoDgMqTD0uBaZNGwjjsM07T)
-
-### Setup Your Development Environment
-
-#### **Step 1: Fork, Clone and Quickstart**
-
-```bash
-# Fork this repo on GitHub, then clone your fork
-git clone https://github.com/YOUR-USERNAME/agent-challenge
-
-cd agent-challenge
-
-cp .env.example .env
-
-pnpm i
-
-pnpm run dev:ui      # Start UI server (port 3000)
-pnpm run dev:agent   # Start Mastra agent server (port 4111)
-```
-
-Open <http://localhost:3000> to see your agent in action in the frontend.
-Open <http://localhost:4111> to open up the Mastra Agent Playground.
-
-#### **Step 2: Choose Your LLM for Development (Optional)**
-
-Pick one option below to power your agent during development:
-
-##### Option A: Use Shared Nosana LLM Endpoint (Recommended - No Setup!)
-
-We provide a free LLM endpoint hosted on Nosana for development. Edit your `.env`:
-
-```env
-# Qwen3:8b - Nosana Endpoint
-# Note baseURL for Ollama needs to be appended with `/api`
-OLLAMA_API_URL=https://3yt39qx97wc9hqwwmylrphi4jsxrngjzxnjakkybnxbw.node.k8s.prd.nos.ci/api
-MODEL_NAME_AT_ENDPOINT=qwen3:8b
-```
-
-If it goes down, reach out on [Discord](https://discord.com/channels/236263424676331521/1354391113028337664)
-
-##### Option B: Use Local LLM
-
-Run Ollama locally (requires [Ollama installed](https://ollama.com/download)):
-
-```bash
-ollama pull qwen3:0.6b
-ollama serve
-```
-
-Edit your `.env`:
-```env
-OLLAMA_API_URL=http://127.0.0.1:11434/api
-MODEL_NAME_AT_ENDPOINT=qwen3:0.6b
-```
-
-##### Option C: Use OpenAI
-
-Add to your `.env` and uncomment the OpenAI line in `src/mastra/agents/index.ts`:
-
-```env
-OPENAI_API_KEY=your-key-here
-```
-
-## 🏗️ Implementation Timeline
-
-**Important Dates:**
-- Start Challenge: 10 October
-- Submission Deadline: 31 October
-- Winners Announced: 07 October
-
-### Phase 1: Development
-
-1. **Setup** : Fork repo, install dependencies, choose template
-2. **Build** : Implement your tool functions and agent logic
-3. **Test** : Validate functionality at http://localhost:3000
-
-### Phase 2: Containerization
-
-1. **Clean up**: Remove unused agents from `src/mastra/index.ts`
-2. **Build**: Create Docker container using the provided `Dockerfile`
-3. **Test locally**: Verify container works correctly
-
-```bash
-# Build your container (using the provided Dockerfile)
-docker build -t yourusername/agent-challenge:latest .
-
-# Test locally first
-docker run -p 3000:3000 yourusername/agent-challenge:latest 
-
-# Push to Docker Hub
-docker login
-docker push yourusername/agent-challenge:latest
-```
-
-### Phase 3: Deployment to Nosana
-1. **Deploy your complete stack**: The provided `Dockerfile` will deploy:
-   - Your Mastra agent
-   - Your frontend interface
-   - An LLM to power your agent (all in one container!)
-2. **Verify**: Test your deployed agent on Nosana network
-3. **Capture proof**: Screenshot or get deployment URL for submission
-
-### Phase 4: Video Demo
-
-Record a 1-3 minute video demonstrating:
-- Your agent **running on Nosana** (show the deployed version!)
-- Key features and functionality
-- The frontend interface in action
-- Real-world use case demonstration
-- Upload to YouTube, Loom, or similar platform
-
-### Phase 5: Documentation
-
-Update this README with:
-- Agent description and purpose
-- What tools/APIs your agent uses
-- Setup instructions
-- Environment variables required
-- Example usage and screenshots
-
-## ✅ Minimum Requirements
-
-Your submission **must** include:
-
-- [ ] **Agent with Tool Calling** - At least one custom tool/function
-- [ ] **Frontend Interface** - Working UI to interact with your agent
-- [ ] **Deployed on Nosana** - Complete stack running on Nosana network
-- [ ] **Docker Container** - Published to Docker Hub
-- [ ] **Video Demo** - 1-3 minute demonstration
-- [ ] **Updated README** - Clear documentation in your forked repo
-- [ ] **Social Media Post** - Share on X/BlueSky/LinkedIn with #NosanaAgentChallenge
-
-## Submission Process
-
-1. **Complete all requirements** listed above
-2. **Commit all of your changes to the `main` branch of your forked repository**
-   - All your code changes
-   - Updated README
-   - Link to your Docker container
-   - Link to your video demo
-   - Nosana deployment proof
-3. **Social Media Post** (Required): Share your submission on X (Twitter), BlueSky, or LinkedIn
-   - Tag @nosana_ai
-   - Include a brief description of your agent
-   - Add hashtag #NosanaAgentChallenge
-4. **Finalize your submission on the [SuperTeam page](https://earn.superteam.fun/listing/nosana-builders-challenge-agents-102)**
-   - Add your forked GitHub repository link
-   - Add a link to your social media post
-   - Submissions that do not meet all requirements will not be considered
-
-## 🚀 Deploying to Nosana
-
-
-### Using Nosana Dashboard
-1. Open [Nosana Dashboard](https://dashboard.nosana.com/deploy)
-2. Click `Expand` to open the job definition editor
-3. Edit `nos_job_def/nosana_mastra.json` with your Docker image:
-   ```json
-   {
-     "image": "yourusername/agent-challenge:latest"
-   }
+1. **Clone and Install**
+   ```bash
+   git clone <your-repo>
+   cd "Nosana Agents 102"
+   npm install --legacy-peer-deps
    ```
-4. Copy and paste the edited job definition
-5. Select a GPU
-6. Click `Deploy`
 
-### Using Nosana CLI (Alternative)
-```bash
-npm install -g @nosana/cli
-nosana job post --file ./nos_job_def/nosana_mastra.json --market nvidia-3090 --timeout 30
+2. **Environment Setup**
+   ```bash
+   cp .env.example .env
+   # Configure your environment variables
+   ```
+
+3. **Start Development Servers**
+   ```bash
+   # Terminal 1: Frontend (Next.js)
+   npm run dev:ui
+   
+   # Terminal 2: Mastra Agent
+   npm run dev:agent
+   ```
+
+4. **Access Application**
+   - Frontend: http://localhost:3000
+   - Agent: Running in background
+
+## 🏥 Usage Examples
+
+### Symptom Analysis
+```
+"I have a headache and nausea"
+→ Analyzes symptoms with confidence scoring
+→ Provides possible conditions and urgency levels
+→ Suggests appropriate next steps
 ```
 
-## 🏆 Judging Criteria
+### Risk Assessment
+```
+"Chest pain with shortness of breath"
+→ Detects emergency indicators
+→ Assesses risk level (high/moderate/low)
+→ Provides emergency guidance
+```
 
-Submissions evaluated on 4 key areas (25% each):
+### Treatment Planning
+```
+"What should I do for a fever?"
+→ Creates evidence-based treatment plan
+→ Considers age and medical history
+→ Provides follow-up recommendations
+```
 
-### 1. Innovation 🎨
-- Originality of agent concept
-- Creative use of AI capabilities
-- Unique problem-solving approach
+## 🛠️ Medical Tools
 
-### 2. Technical Implementation 💻
-- Code quality and organization
-- Proper use of Mastra framework
-- Efficient tool implementation
-- Error handling and robustness
+### Symptom Analysis Tool
+- **Input**: Symptoms, age, gender, medical history
+- **Output**: Confidence scores, possible conditions, urgency levels
+- **Features**: Pattern matching, confidence calibration, context awareness
 
-### 3. Nosana Integration ⚡
-- Successful deployment on Nosana
-- Resource efficiency
-- Stability and performance
-- Proper containerization
+### Treatment Planning Tool
+- **Input**: Condition, urgency, patient age
+- **Output**: Treatment plans, medications, follow-up care
+- **Features**: Age-appropriate recommendations, evidence-based guidance
 
-### 4. Real-World Impact 🌍
-- Practical use cases
-- Potential for adoption
-- Clear value proposition
-- Demonstration quality
+### Risk Assessment Tool
+- **Input**: Symptoms, age, existing conditions
+- **Output**: Risk levels, emergency indicators, recommendations
+- **Features**: Emergency detection, red flag identification
 
-## 🎁 Prizes
+## 🎨 Frontend Features
 
-**Top 10 submissions will be rewarded:**
-- 🥇 1st Place: $1,000 USDC
-- 🥈 2nd Place: $750 USDC
-- 🥉 3rd Place: $450 USDC
-- 🏅 4th Place: $200 USDC
-- 🏅 5th-10th Place: $100 USDC each
+### Patient Dashboard
+- **📋 Patient Records**: Historical analysis and tracking
+- **👤 Current Patient**: Active session management
+- **🔍 Real-time Analysis**: Live symptom processing
+- **💊 Treatment Plans**: Interactive treatment recommendations
 
-## 📚 Learning Resources
+### UI Components
+- **Medical Analysis Cards**: Detailed symptom analysis results
+- **Treatment Plan Cards**: Comprehensive treatment recommendations
+- **Risk Assessment Cards**: Emergency and risk evaluation
+- **Patient Record Management**: Historical data tracking
 
-For more information, check out the following resources:
+## 🚀 Deployment
 
-- [Nosana Documentation](https://docs.nosana.io)
-- [Mastra Documentation](https://mastra.ai/en/docs) - Learn more about Mastra and its features
-- [CopilotKit Documentation](https://docs.copilotkit.ai) - Explore CopilotKit's capabilities
-- [Next.js Documentation](https://nextjs.org/docs) - Learn about Next.js features and API
-- [Docker Documentation](https://docs.docker.com)
-- [Nosana CLI](https://github.com/nosana-ci/nosana-cli)
-- [Mastra Agents Overview](https://mastra.ai/en/docs/agents/overview)
-- [Build an AI Stock Agent Guide](https://mastra.ai/en/guides/guide/stock-agent)
-- [Mastra Tool Calling Documentation](https://mastra.ai/en/docs/agents/tools)
+### Nosana Network Deployment
 
-## 🆘 Support & Community
+1. **Build Docker Container**
+   ```bash
+   docker build -t meditech-ai .
+   ```
 
-### Get Help
-- **Discord**: Join [Nosana Discord](https://nosana.com/discord) 
-- **Dedicated Channel**: [Builders Challenge Dev Chat](https://discord.com/channels/236263424676331521/1354391113028337664)
-- **Twitter**: Follow [@nosana_ai](https://x.com/nosana_ai) for live updates
+2. **Deploy to Nosana**
+   ```bash
+   # Using Nosana CLI
+   nosana deploy
+   
+   # Or using Nosana Dashboard
+   # Upload your Docker image
+   ```
 
-## 🎉 Ready to Build?
+3. **Configure Environment**
+   - Set up environment variables
+   - Configure database connections
+   - Set up monitoring
 
-1. **Fork** this repository
-2. **Build** your AI agent
-3. **Deploy** to Nosana
-4. **Present** your creation
+### Docker Configuration
+- **Multi-stage build** for optimization
+- **Health checks** for reliability
+- **Resource limits** for Nosana compatibility
+- **Security scanning** for production safety
 
-Good luck, builders! We can't wait to see the innovative AI agents you create for the Nosana ecosystem.
+## 📊 Performance Features
 
-**Happy Building!** 🚀
+### Confidence Scoring
+- **Dynamic calibration** based on symptom specificity
+- **Rarity penalties** for uncommon conditions
+- **Context boosts** for age and gender factors
+- **Range**: 25-80% for realistic assessment
 
-## Stay in the Loop
+### Emergency Detection
+- **Critical symptom pairs** (chest pain + shortness of breath)
+- **Red flag identification** (fever + neck stiffness)
+- **Urgency classification** (routine/moderate/urgent)
+- **Emergency guidance** for critical conditions
 
-Want access to exclusive builder perks, early challenges, and Nosana credits?
-Subscribe to our newsletter and never miss an update.
+### Real-time Processing
+- **Live UI updates** during analysis
+- **Progressive result display** for better UX
+- **State synchronization** between agent and frontend
+- **Error handling** with graceful fallbacks
 
-👉 [ Join the Nosana Builders Newsletter ](https://e86f0b9c.sibforms.com/serve/MUIFALaEjtsXB60SDmm1_DHdt9TOSRCFHOZUSvwK0ANbZDeJH-sBZry2_0YTNi1OjPt_ZNiwr4gGC1DPTji2zdKGJos1QEyVGBzTq_oLalKkeHx3tq2tQtzghyIhYoF4_sFmej1YL1WtnFQyH0y1epowKmDFpDz_EdGKH2cYKTleuTu97viowkIIMqoDgMqTD0uBaZNGwjjsM07T)
+## 🔒 Safety & Ethics
 
-Be the first to know about:
-- 🧠 Upcoming Builders Challenges
-- 💸 New reward opportunities
-- ⚙ Product updates and feature drops
-- 🎁 Early-bird credits and partner perks
+### Medical Safety
+- **Professional disclaimers** in all responses
+- **Emergency guidance** for critical conditions
+- **Healthcare provider recommendations** for serious cases
+- **Age-appropriate** medical advice
 
-Join the Nosana builder community today — and build the future of decentralized AI.
+### Data Privacy
+- **Local processing** where possible
+- **Secure data handling** for patient information
+- **No persistent storage** of sensitive medical data
+- **GDPR compliance** considerations
 
+## 🧪 Testing
 
+### Medical Accuracy
+- **Symptom pattern validation** against medical knowledge
+- **Confidence score calibration** testing
+- **Emergency detection** accuracy verification
+- **Treatment plan** evidence-based validation
+
+### Technical Testing
+- **Unit tests** for medical tools
+- **Integration tests** for agent workflows
+- **UI tests** for frontend components
+- **Performance tests** for real-time processing
+
+## 📈 Future Enhancements
+
+### Planned Features
+- **Multi-language support** for global accessibility
+- **Integration with EHR systems** for healthcare providers
+- **Advanced ML models** for improved accuracy
+- **Telemedicine integration** for remote consultations
+
+### Technical Roadmap
+- **Microservices architecture** for scalability
+- **Advanced caching** for performance
+- **Real-time collaboration** for healthcare teams
+- **Mobile applications** for patient access
+
+## 🤝 Contributing
+
+### Development Guidelines
+- **Medical accuracy** is paramount
+- **Safety first** in all implementations
+- **Evidence-based** approach to medical guidance
+- **Professional standards** for healthcare applications
+
+### Code Standards
+- **TypeScript** for type safety
+- **Comprehensive testing** for medical accuracy
+- **Documentation** for all medical logic
+- **Code reviews** for safety validation
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+### Medical Disclaimer
+This application provides medical guidance and should not replace professional medical care. Always consult healthcare providers for serious conditions.
+
+### Technical Support
+- **GitHub Issues** for bug reports
+- **Documentation** for setup and usage
+- **Community Forum** for discussions
+- **Professional Support** for enterprise use
+
+---
+
+**🏥 Built with ❤️ for the future of healthcare AI**
+
+*MediTech AI - Empowering healthcare through intelligent AI agents*

@@ -1,11 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Simple healthcare response function
-function getHealthcareResponse(message: string): string {
-  const lowerMessage = message.toLowerCase();
-  
-  if (lowerMessage.includes('headache') && lowerMessage.includes('nausea')) {
-    return `🏥 **MediTech AI Healthcare Analysis** 🏥
+// Simple healthcare API endpoint that doesn't rely on Mastra
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { message } = body;
+
+    if (!message) {
+      return NextResponse.json({ error: 'Message is required' }, { status: 400 });
+    }
+
+    // Simple healthcare response based on the message
+    let response = '';
+
+    if (message.toLowerCase().includes('headache') && message.toLowerCase().includes('nausea')) {
+      response = `🏥 **MediTech AI Healthcare Analysis** 🏥
 
 **Symptom Analysis:**
 - Headache and nausea can indicate several conditions
@@ -34,8 +43,8 @@ function getHealthcareResponse(message: string): string {
    - Symptoms worsen or persist > 24 hours
 
 **⚠️ Important:** This is for informational purposes only. Always consult a healthcare provider for proper medical evaluation.`;
-  } else if (lowerMessage.includes('chest pain') && lowerMessage.includes('shortness of breath')) {
-    return `🚨 **MediTech AI Healthcare Analysis** 🚨
+    } else if (message.toLowerCase().includes('chest pain') && message.toLowerCase().includes('shortness of breath')) {
+      response = `🚨 **MediTech AI Healthcare Analysis** 🚨
 
 **Symptom Analysis:**
 - Chest pain with shortness of breath is a serious combination
@@ -57,8 +66,8 @@ function getHealthcareResponse(message: string): string {
 2. **Do NOT wait** - these symptoms require immediate medical evaluation
 
 **⚠️ CRITICAL:** This is a medical emergency. Call 911 or go to the nearest emergency room immediately. Do not delay seeking medical care.`;
-  } else if (lowerMessage.includes('fever') && lowerMessage.includes('fatigue')) {
-    return `🏥 **MediTech AI Healthcare Analysis** 🏥
+    } else if (message.toLowerCase().includes('fever') && message.toLowerCase().includes('fatigue')) {
+      response = `🏥 **MediTech AI Healthcare Analysis** 🏥
 
 **Symptom Analysis:**
 - Fever and fatigue suggest viral or bacterial infection
@@ -88,8 +97,8 @@ function getHealthcareResponse(message: string): string {
    - Consider COVID-19 testing if appropriate
 
 **⚠️ Important:** Monitor symptoms closely and seek medical care if they worsen or persist.`;
-  } else if (lowerMessage.includes('diabetes') && lowerMessage.includes('65')) {
-    return `🏥 **MediTech AI Healthcare Analysis** 🏥
+    } else if (message.toLowerCase().includes('diabetes') && message.toLowerCase().includes('65')) {
+      response = `🏥 **MediTech AI Healthcare Analysis** 🏥
 
 **Patient Profile:**
 - Age: 65+ (Senior)
@@ -125,8 +134,8 @@ function getHealthcareResponse(message: string): string {
 - Any new or worsening symptoms
 
 **⚠️ Important:** Regular medical checkups are essential for seniors with diabetes. Consult your healthcare provider for personalized care.`;
-  } else {
-    return `🏥 **MediTech AI Healthcare Assistant** 🏥
+    } else {
+      response = `🏥 **MediTech AI Healthcare Assistant** 🏥
 
 I'm here to help with your medical concerns. I can analyze symptoms, assess risk levels, and provide treatment recommendations.
 
@@ -149,20 +158,7 @@ I'm here to help with your medical concerns. I can analyze symptoms, assess risk
 - "I'm 65 and have diabetes, what should I watch for?"
 
 **⚠️ Important:** I provide medical guidance but cannot replace professional medical care. Always consult healthcare providers for serious conditions.`;
-  }
-}
-
-// Simple API endpoint that returns healthcare responses
-export const POST = async (req: NextRequest) => {
-  try {
-    const body = await req.json();
-    const { message } = body;
-
-    if (!message) {
-      return NextResponse.json({ error: 'Message is required' }, { status: 400 });
     }
-
-    const response = getHealthcareResponse(message);
 
     return NextResponse.json({ 
       success: true, 
@@ -177,4 +173,4 @@ export const POST = async (req: NextRequest) => {
       details: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 });
   }
-};
+}
