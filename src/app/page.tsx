@@ -27,7 +27,7 @@ export default function Home() {
       } else {
         setResponse('Error: ' + (data.error || 'Unknown error'));
       }
-    } catch (error) {
+    } catch {
       setResponse('Error: Failed to get response');
     } finally {
       setLoading(false);
@@ -82,10 +82,10 @@ export default function Home() {
             <div className="mt-6 text-sm text-gray-500">
               <p><strong>Examples to try:</strong></p>
               <ul className="list-disc list-inside mt-2 space-y-1">
-                <li>"I have a headache and nausea"</li>
-                <li>"Chest pain with shortness of breath"</li>
-                <li>"Fever and fatigue for 3 days"</li>
-                <li>"I'm 65 and have diabetes, what should I watch for?"</li>
+                <li>&ldquo;I have a headache and nausea&rdquo;</li>
+                <li>&ldquo;Chest pain with shortness of breath&rdquo;</li>
+                <li>&ldquo;Fever and fatigue for 3 days&rdquo;</li>
+                <li>&ldquo;I&apos;m 65 and have diabetes, what should I watch for?&rdquo;</li>
               </ul>
             </div>
           </div>

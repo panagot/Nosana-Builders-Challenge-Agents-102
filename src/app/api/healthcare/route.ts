@@ -174,3 +174,4 @@ I'm here to help with your medical concerns. I can analyze symptoms, assess risk
     }, { status: 500 });
   }
 }
+

@@ -86,3 +86,4 @@ exec('npx tsc --noEmit --project tsconfig.json', (error, stdout, stderr) => {
     console.log('4. Open: http://localhost:3000');
   }, 5000);
 });
+
