@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Simple healthcare response function
+// Simple healthcare response function that simulates the Mastra agent
 function getHealthcareResponse(message: string): string {
   const lowerMessage = message.toLowerCase();
   
@@ -152,7 +152,7 @@ I'm here to help with your medical concerns. I can analyze symptoms, assess risk
   }
 }
 
-// Simple API endpoint that returns healthcare responses
+// API endpoint that returns healthcare responses
 export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();

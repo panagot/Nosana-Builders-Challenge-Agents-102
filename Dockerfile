@@ -2,11 +2,6 @@
 
 FROM node:lts AS build
 
-RUN corepack enable
-
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-
 # Disable Analytics/Telemetry
 ENV DISABLE_TELEMETRY=true
 ENV POSTHOG_DISABLED=true
@@ -18,19 +13,17 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY pnpm-lock.yaml ./
+# Copy package files
+COPY package.json package-lock.json* ./
 
-RUN --mount=type=cache,target=/pnpm/store \
-  pnpm fetch --frozen-lockfile
+# Install all dependencies (including dev) for build
+RUN npm ci --legacy-peer-deps
 
-COPY package.json ./
-
-RUN --mount=type=cache,target=/pnpm/store \
-  pnpm install --frozen-lockfile --prod --offline
-
+# Copy source code
 COPY . .
 
-RUN pnpm build
+# Build the application
+RUN npm run build
 
 FROM node:lts AS runtime
 
@@ -39,14 +32,19 @@ RUN groupadd -g 1001 appgroup && \
 
 WORKDIR /app
 
+# Copy built application
 COPY --from=build --chown=appuser:appgroup /app ./
 
+# Set environment variables
 ENV NODE_ENV=production \
   NODE_OPTIONS="--enable-source-maps"
 
+# Switch to non-root user
 USER appuser
 
+# Expose ports
 EXPOSE 3000
 EXPOSE 4111
 
+# Start the application
 ENTRYPOINT ["npm", "start"]

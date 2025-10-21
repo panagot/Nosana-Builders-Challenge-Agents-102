@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MediTech AI Healthcare Agent",
-  description: "Advanced AI-powered medical analysis and treatment planning.",
+  description: "Advanced AI-powered medical analysis and treatment planning using Mastra framework.",
 };
 
 export default function RootLayout({

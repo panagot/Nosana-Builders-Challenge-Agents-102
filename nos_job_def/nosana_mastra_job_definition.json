@@ -8,7 +8,7 @@
     {
       "id": "agents",
       "args": {
-        "image": "djmbritt/agent-challenge:latest",
+        "image": "panagot/meditech-ai:latest",
         "expose": 3000,
         "env": {
           "NOS_OLLAMA_API_URL": "http://%%ops.ollama.host%%:11434/api",
@@ -53,7 +53,7 @@
   "meta": {
     "trigger": "dashboard",
     "system_requirements": {
-      "required_vram": 24
+      "required_vram": 8
     }
   },
   "type": "container",

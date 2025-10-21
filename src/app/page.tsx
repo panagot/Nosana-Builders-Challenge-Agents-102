@@ -41,7 +41,7 @@ export default function Home() {
           MediTech AI Healthcare Agent
         </h1>
         <p className="mt-3 text-xl text-gray-700">
-          Your AI-powered assistant for medical analysis and treatment planning.
+          Advanced AI-powered medical analysis using Mastra framework and MCP protocol.
         </p>
 
         <div className="mt-8 w-full max-w-2xl">
@@ -86,6 +86,17 @@ export default function Home() {
                 <li>&ldquo;Chest pain with shortness of breath&rdquo;</li>
                 <li>&ldquo;Fever and fatigue for 3 days&rdquo;</li>
                 <li>&ldquo;I&apos;m 65 and have diabetes, what should I watch for?&rdquo;</li>
+              </ul>
+            </div>
+
+            <div className="mt-6 p-4 bg-blue-50 rounded-md">
+              <h4 className="text-sm font-semibold text-blue-900 mb-2">🏥 MediTech AI Features:</h4>
+              <ul className="text-sm text-blue-800 space-y-1">
+                <li>✅ <strong>Symptom Analysis</strong> - Advanced medical condition identification</li>
+                <li>✅ <strong>Risk Assessment</strong> - Emergency detection and urgency evaluation</li>
+                <li>✅ <strong>Treatment Planning</strong> - Evidence-based care recommendations</li>
+                <li>✅ <strong>MCP Protocol</strong> - Model Context Protocol for enhanced capabilities</li>
+                <li>✅ <strong>Mastra Framework</strong> - Sophisticated AI agent orchestration</li>
               </ul>
             </div>
           </div>

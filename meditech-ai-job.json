@@ -1,0 +1,21 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "meta": {
+    "trigger": "dashboard",
+    "system_requirements": {
+      "required_vram": 8
+    }
+  },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "meditech-ai",
+      "args": {
+        "image": "docker.io/panagot/meditech-ai:latest",
+        "gpu": true,
+        "expose": [3000, 4111]
+      }
+    }
+  ]
+}

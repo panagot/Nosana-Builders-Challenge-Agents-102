@@ -1,6 +1,5 @@
-# Ignore Mastra-related files that cause build issues
+# Ignore Mastra build artifacts but keep source files
 .mastra/
-src/mastra/
 debug-agent.js
 test-agent.js
 test-simple.js
